@@ -1,8 +1,13 @@
 document.getElementById('estoque-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio padrão do formulário
 
-    const nome = document.getElementById('nome').value;
-    const quantidade = document.getElementById('quantidade').value;
+    const nome = document.getElementById('nome').value.trim();
+    const quantidade = document.getElementById('quantidade').value.trim();
+
+    if (nome === "" || quantidade === "") {
+        document.getElementById('response').innerText = "Por favor, preencha todos os campos.";
+        return;
+    }
 
     fetch('server.php', {
         method: 'POST',
